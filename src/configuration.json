@@ -1,0 +1,17 @@
+{
+  "configModel": [
+    {
+      "propertyKey": "downloadDirectory",
+      "propertyValue": "E:\\Media\\comics"
+    },
+    {
+      "propertyKey": "compressChapter",
+      "propertyValue": "true"
+    },
+    {
+      "propertyKey":"deleteAfterCompressing",
+      "propertyValue":"true"
+    }
+
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "providerModel": [
+    {
+      "providerName": "ReadComicsIO",
+      "scraperClassName": "ReadComicsIoScraper",
+      "baseUrl": "https://www.readcomics.io/",
+      "allComicsUrl": "https://www.readcomics.io/comic-list/"
+    }
+  ]
+}
