@@ -7,6 +7,8 @@ import org.pixelformater.comicServer.Model.ProviderModel;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProviderService extends GenericService<ProviderRepository>{
@@ -40,5 +42,12 @@ public class ProviderService extends GenericService<ProviderRepository>{
             objectToReturn= iRepository.findByProviderName(providerModel.getProviderName());
         }
         return objectToReturn;
+    }
+
+    public List<ProviderModel> findAllProviders(){
+        Iterable<ProviderModel> allProviders = iRepository.findAll();
+        ArrayList<ProviderModel> providerList = new ArrayList<>();
+        allProviders.forEach(providerList::add);
+        return providerList;
     }
 }

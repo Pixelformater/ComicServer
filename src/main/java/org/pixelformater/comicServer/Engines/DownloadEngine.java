@@ -60,14 +60,14 @@ public class DownloadEngine {
             chapterModel.setDownloaded(true);
             chapterPages.put(chapterModel,listOfPagesDownloadPath);
         }
-        if (isChapterToBeZipped()){
+        if (configService.isChapterToBeZipped()){
             for(HashMap.Entry<ChapterModel,List<String>> entry: chapterPages.entrySet()){
                 String zipFile = entry.getKey().getChapterName().trim()+".cbz";
                 String sourceFolder = entry.getKey().getDownloadedPath();
                 FileUtilities.compressComicFiles(zipFile,sourceFolder,entry.getValue());
             }
         }
-        if(areFilesToBeDeletedAfterCompressing()){
+        if(configService.areFilesToBeDeletedAfterCompressing()){
             for(HashMap.Entry<ChapterModel,List<String>> entry: chapterPages.entrySet()){
                 String sourceFolder = entry.getKey().getDownloadedPath();
                 FileUtilities.deleteFileList(sourceFolder,entry.getValue());
@@ -109,24 +109,6 @@ public class DownloadEngine {
 
     public ProviderModel getProvider(ProviderModel providerModel) {
         return providerService.getProvider(providerModel);
-    }
-
-    public boolean isChapterToBeZipped() {
-        Boolean returnBool =false;
-        ConfigModel config = configService.findByPropertyKey("compressChapter");
-        if (config != null) {
-            returnBool = config.getPropertyValue().equals("true");
-        }
-        return returnBool;
-    }
-
-    public boolean areFilesToBeDeletedAfterCompressing() {
-        Boolean returnBool = false;
-        ConfigModel config = configService.findByPropertyKey("deleteAfterCompressing");
-        if (config != null) {
-           returnBool =  config.getPropertyValue().equals("true");
-        }
-        return returnBool;
     }
 
 }

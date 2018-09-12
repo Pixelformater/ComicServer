@@ -30,4 +30,21 @@ public class ConfigService extends GenericService<ConfigRespository> {
         return objectToReturn;
     }
 
+    public boolean isChapterToBeZipped() {
+        Boolean returnBool =false;
+        ConfigModel config = findByPropertyKey("compressChapter");
+        if (config != null) {
+            returnBool = config.getPropertyValue().equals("true");
+        }
+        return returnBool;
+    }
+
+    public boolean areFilesToBeDeletedAfterCompressing() {
+        Boolean returnBool = false;
+        ConfigModel config = findByPropertyKey("deleteAfterCompressing");
+        if (config != null) {
+           returnBool =  config.getPropertyValue().equals("true");
+        }
+        return returnBool;
+    }
 }
